@@ -104,7 +104,6 @@ function menu(){
     checkbox1.style.display = "none"
     checkbox2.style.display = "none"
     checkbox3.style.display = "none"
-    gameContainer.style.marginTop = "78px"
     overlay.style.display = "none"
     startText1.style.display = "block"
     startText2.style.display = "none"
