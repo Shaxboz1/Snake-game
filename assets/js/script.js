@@ -25,12 +25,91 @@ let snake = [
 
 
 window.addEventListener("keydown", changeDirection);
-resetBtn.addEventListener("click", resetGame);
 
-function e(){
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener("change", function() {
+            if (checkbox.checked) {
+                checkboxes.forEach(function(otherCheckbox) {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+});
+
+
+
+var myVariable = 200;
+var checkbox1 = document.querySelector(".chkbx1");
+var checkbox2 = document.querySelector(".chkbx2");
+var checkbox3 = document.querySelector(".chkbx3");
+document.addEventListener("DOMContentLoaded", function() {
+
+
+    checkbox1.addEventListener("change", updateVariable);
+    checkbox2.addEventListener("change", updateVariable);
+    checkbox3.addEventListener("change", updateVariable);
+
+    function updateVariable() {
+    if (checkbox1.checked) {
+        myVariable = 200;
+    } else if (checkbox2.checked) {
+        myVariable = 120;
+    }
+      else if (checkbox3.checked) {
+        myVariable = 70;
+    }
+}
+});
+
+function backToMenu(){
+    menu();
+}
+
+
+
+const startBtn = document.querySelector(".startBtn")
+const gameContainer = document.querySelector("#gameContainer")
+const overlay = document.querySelector(".overlay")
+const startText1 = document.querySelector(".startText1")
+const startText2 = document.querySelector(".startText2")
+const startText3 = document.querySelector(".startText3")
+const startText4 = document.querySelector(".startText4")
+function menu(){
     setTimeout(()=>{
         gameStart();
+    startText4.style.display = "none"
+    }, 4000)
+    setTimeout(()=>{
+    startText1.style.display = "none"
+    startText2.style.display = "block"
     }, 1000)
+    setTimeout(()=>{
+    startText2.style.display = "none"
+    startText3.style.display = "block"
+    }, 2000)
+    setTimeout(()=>{
+    startText3.style.display = "none"
+    startText4.style.display = "block"
+    }, 3000)
+    setTimeout(()=>{
+    startText4.style.display = "none"
+    }, 4000)
+    startBtn.style.display = "none"
+    checkbox1.style.display = "none"
+    checkbox2.style.display = "none"
+    checkbox3.style.display = "none"
+    gameContainer.style.marginTop = "78px"
+    overlay.style.display = "none"
+    startText1.style.display = "block"
+    startText2.style.display = "none"
+    startText3.style.display = "none"
+    startText4.style.display = "none"
 }
 
 function gameStart(){
@@ -49,7 +128,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();
-        }, 75);
+        }, myVariable);
     }else{
         dsiplayGameOver();
     }
@@ -170,7 +249,7 @@ function dsiplayGameOver(){
     ctx.fillText("Game Over!", gameWidth / 2, gameHeight / 2);
     running = false;
 };
-function resetGame(){
+resetBtn.addEventListener("click", ()=>{
     score = 0;
     xVelocity = unitSize;
     yVelocity = 0;
@@ -181,5 +260,4 @@ function resetGame(){
         {x:unitSize, y:0},
         {x:0, y:0}
     ];
-    e();
-};
+});

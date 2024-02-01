@@ -7,13 +7,27 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+    <div class="overlay"></div>
+    
+    <div class="startingPart">
+        <button class="startBtn" onclick="menu()">Start</button>
+        <input type="checkbox" class="chkbx1" checked>
+        <input type="checkbox" class="chkbx2">
+        <input type="checkbox" class="chkbx3">
+        <h1 class="startText1">1</h1>
+        <h1 class="startText2">2</h1>
+        <h1 class="startText3">3</h1>
+        <h1 class="startText4">GO!</h1>
+    </div>
     <div id="gameContainer">
         <canvas id="gameBoard" width="500" height="500"></canvas>
-            <div id="scoreText">0</div>
-            <button id="resetBtn">Reset</button>
-        </div>
+        <div id="scoreText">0</div>
+    </div>
+    <div class="btns">
+        <button id="resetBtn">Reset</button>
+    <a href="/"><button id="menuBtn">Back to menu</button></a>
+    </div>
 
-        <!-- <button onclick="e()">Start</button> -->
 
 
 
