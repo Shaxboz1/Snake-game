@@ -5,29 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class="overlay"></div>
     
-    <div class="startingPart">
-        <button class="startBtn" onclick="menu()">Start</button>
-        <input type="checkbox" class="chkbx1" checked>
-        <input type="checkbox" class="chkbx2">
-        <input type="checkbox" class="chkbx3">
-        <h1 class="startText1">1</h1>
-        <h1 class="startText2">2</h1>
-        <h1 class="startText3">3</h1>
-        <h1 class="startText4">GO!</h1>
+<div class="startingPart">
+        <button class="startBtn" onclick="menu()"><i class='bx bx-play'></i></button>
+        <button class="settingsBtn" onclick="showSettings()"><i class='bx bx-cog' ></i></button>
+    <div class="chekboxs">
+        <div class="check">
+            <input type="checkbox" class="chkbx1" checked>
+        <label>Easy</label>
+        </div>
+        <div class="check">
+            <input type="checkbox" class="chkbx2">
+        <label>Hard</label>
+        </div>
+        <div class="check">
+            <input type="checkbox" class="chkbx3">
+        <label>Impossible</label>
+        </div>
     </div>
+</div>
+
+
+
+    <div class="startingPart11">
+    <h1 class="startText1">1</h1>
+    <h1 class="startText2">2</h1>
+    <h1 class="startText3">3</h1>
+    <h1 class="startText4">GO!</h1>
+    </div>
+
+
+
     <div id="gameContainer">
         <canvas id="gameBoard" width="500" height="500"></canvas>
         <div id="scoreText">0</div>
     </div>
+
+
+
     <div class="btns">
         <button id="resetBtn">Reset</button>
     <a href="/"><button id="menuBtn">Back to menu</button></a>
     </div>
-
+    
+    <div class="mobile-btns">
+        <div class="btn1">
+            <button class="mobile-btn1 btn" onclick="move(1)"><i class='bx bx-chevron-up'></i></button>
+        </div>
+        <div class="btn1">
+            <button class="mobile-btn4 btn" onclick="move(4)"><i class='bx bx-chevron-right'></i></button>
+        </div>
+        <div class="btn1">
+            <button class="mobile-btn3 btn" onclick="move(3)"><i class='bx bx-chevron-left'></i></button>
+        </div>
+        <div class="btn1">
+            <button class="mobile-btn2 btn" onclick="move(2)"><i class='bx bx-chevron-down'></i></button>
+        </div>
+    </div>
 
 
 

@@ -67,11 +67,6 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 });
 
-function backToMenu(){
-    menu();
-}
-
-
 
 const startBtn = document.querySelector(".startBtn")
 const gameContainer = document.querySelector("#gameContainer")
@@ -80,10 +75,13 @@ const startText1 = document.querySelector(".startText1")
 const startText2 = document.querySelector(".startText2")
 const startText3 = document.querySelector(".startText3")
 const startText4 = document.querySelector(".startText4")
+const startingPart = document.querySelector(".startingPart")
+gameContainer.style.marginTop = "-125px"
 function menu(){
     setTimeout(()=>{
         gameStart();
     startText4.style.display = "none"
+    gameContainer.style.marginTop = "0" 
     }, 4000)
     setTimeout(()=>{
     startText1.style.display = "none"
@@ -97,10 +95,8 @@ function menu(){
     startText3.style.display = "none"
     startText4.style.display = "block"
     }, 3000)
-    setTimeout(()=>{
-    startText4.style.display = "none"
-    }, 4000)
     startBtn.style.display = "none"
+    startingPart.style.display = "none"
     checkbox1.style.display = "none"
     checkbox2.style.display = "none"
     checkbox3.style.display = "none"
@@ -169,7 +165,13 @@ function drawSnake(){
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
     })
 };
+
+
+
+
 function changeDirection(event){
+    
+    
     const keyPressed = event.keyCode
     const LEFT = 37;
     const kLEFT = 65;
@@ -179,7 +181,12 @@ function changeDirection(event){
     const kRIGHT = 68;
     const DOWN = 40;
     const kDOWN = 83;
+    
 
+
+    
+    
+    
     const goingUp = (yVelocity == -unitSize);
     const goingDown = (yVelocity == unitSize);
     const goingRight = (xVelocity == unitSize);
@@ -190,10 +197,12 @@ function changeDirection(event){
           xVelocity = -unitSize;
           yVelocity =  0;
           break;
+
         case(keyPressed == kLEFT  && !goingRight):
           xVelocity = -unitSize;
           yVelocity =  0;
           break;
+        
         case(keyPressed == UP &&  !goingDown):
           xVelocity = 0;
           yVelocity =  -unitSize;
@@ -202,6 +211,7 @@ function changeDirection(event){
           xVelocity = 0;
           yVelocity =  -unitSize;
           break;
+        
         case(keyPressed == RIGHT && !goingLeft):
           xVelocity = unitSize;
           yVelocity =  0;
@@ -210,6 +220,7 @@ function changeDirection(event){
           xVelocity = unitSize;
           yVelocity =  0;
           break;
+        
         case(keyPressed == DOWN && !goingUp):
           xVelocity = 0;
           yVelocity = unitSize;
@@ -218,8 +229,15 @@ function changeDirection(event){
           xVelocity = 0;
           yVelocity = unitSize;
           break;
+       
     }
+
 };
+
+
+
+
+
 function checkGameOver(){
     switch(true){
         case(snake[0].x < 0):
@@ -259,4 +277,44 @@ resetBtn.addEventListener("click", ()=>{
         {x:unitSize, y:0},
         {x:0, y:0}
     ];
+    running = true;
+    scoreText.textContent = score;
+    createFood();
+    drawFood();
+    nextTick();
 });
+
+const settingBtn = document.querySelector(".settingsBtn")
+const checkboxs = document.querySelector(".chekboxs")
+const setting = document.querySelector(".bx-cog")
+function showSettings(){
+    checkboxs.classList.toggle("active")
+    startingPart.classList.toggle("active1")
+    setting.classList.toggle("active2")
+}
+
+function move(direction){
+    const goingUp = (yVelocity == -unitSize);
+    const goingDown = (yVelocity == unitSize);
+    const goingRight = (xVelocity == unitSize);
+    const goingLeft = (xVelocity == -unitSize);
+    switch(true){
+        case(direction == 1 && !goingDown):
+        xVelocity = 0;
+        yVelocity =  -unitSize;
+        break;
+        case(direction == 2 && !goingUp):
+        xVelocity = 0;
+        yVelocity = unitSize;
+        break;
+        case(direction == 3 && !goingRight):
+        xVelocity = -unitSize;
+        yVelocity =  0;
+        break;
+        case(direction == 4 && !goingLeft):
+        xVelocity = unitSize;
+        yVelocity =  0;
+        break;
+    }
+}
+    

@@ -1,13 +1,16 @@
 body{
     background: #333;
     zoom: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #gameContainer{
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 #gameBoard{
     border: 3px solid;
@@ -19,37 +22,72 @@ body{
 }
 #resetBtn{
     font-family: sans-serif;
+    font-family: MV Boli;
+    font-weight: bold;
     font-size: 15px;
     padding: 5px 15px;
     border: 4px solid;
     border-radius: 15px;
-    cursor: pointer;    
+    cursor: pointer;   
+    background: rgb(2, 229, 2);
 }
 #menuBtn{
-    font-family: sans-serif;
+    font-family: MV Boli;
+    font-weight: bold;
     font-size: 15px;
     padding: 5px 15px;
     border: 4px solid;
     border-radius: 15px;
     cursor: pointer;    
+    background: rgb(2, 229, 2);
 }
 .startingPart{
     position: relative;
     top: 250px;
     text-align: center;
     z-index: 1000;
+    width: 300px;
+    padding: 15px;
+    border: 3px solid rgb(2, 229, 2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    overflow: hidden;
+    transition: .3s;
+}
+.startingPart11{
+    position: relative;
+    top: 250px;
+    text-align: center;
+    z-index: 1000;
 }
 .startBtn{
-    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
-    font-size: 25px;
-    font-family: MV Boli;
-    font-weight: bold;
+    border-radius: 50%;
+    font-size: 70px;
     color: #fff;
-    background: rgb(64, 248, 64);
+    background: rgb(2, 229, 2);
     cursor: pointer;
-    
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.settingsBtn{
+    border: none;
+    border-radius: 50%;
+    font-size: 50px;
+    color: #fff;
+    background: rgb(2, 229, 2);
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btns{
     display: flex;
@@ -63,10 +101,10 @@ body{
     height: 100%;
     background: black;
     opacity: 70%;
-    margin: 0;padding: 0;
 }
 .startText1{
     font-size: 50px;
+    font-family: MV Boli;
     display: none;
     color: #fff;
     animation: animate1 1s ease-in-out;
@@ -81,6 +119,7 @@ body{
 }
 .startText2{
     font-size: 50px;
+    font-family: MV Boli;
     display: none;
     color: #fff;
     animation: animate1 1s ease-in-out;
@@ -95,6 +134,7 @@ body{
 }
 .startText3{
     font-size: 50px;
+    font-family: MV Boli;
     display: none;
     color: #fff;
     animation: animate1 1s ease-in-out;
@@ -109,9 +149,15 @@ body{
 }
 .startText4{
     font-size: 50px;
+    font-family: MV Boli;
     display: none;
     color: #fff;
     animation: animate1 1s ease-in-out;
+}
+.mobile-btns{
+    display: none;
+    margin-left: 90px;
+    margin-top: 40px;
 }
 @keyframes animate1{
     0%{
@@ -125,4 +171,58 @@ body{
     body{
         zoom: 60%;
     }
+    #resetBtn{
+        padding: 10px 25px;
+        font-size: 23px;
+    }
+    #menuBtn{
+        padding: 10px 25px;
+        font-size: 23px;
+    }
+    .mobile-btns{
+        display: block;
+    }
+}
+.chekboxs{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: start;
+    margin-right: -160px;
+    opacity: 0;
+    transition: .3s;
+}
+.active{
+    margin-right: 0px;
+    opacity: 100;
+}
+.active1{
+    width: 390px;
+}
+.bx-cog{
+    transform: rotate(0deg);
+    transition: .5s;
+}
+.active2{
+    transform: rotate(-180deg);
+}
+label{
+    font-size: 19px;
+    font-family: MV Boli;
+}
+
+.btn{
+    background: rgb(2, 229, 2);
+    border: 4px solid black;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 40px;
+}
+.mobile-btn4{
+    margin-left: 70px;
+}
+.mobile-btn3{
+    margin-left: -70px;
+    margin-top: -55px;
+    position: absolute;
 }
