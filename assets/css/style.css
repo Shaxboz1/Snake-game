@@ -26,20 +26,46 @@ body{
     font-weight: bold;
     font-size: 15px;
     padding: 5px 15px;
-    border: 4px solid;
+    border: 4px solid black;
     border-radius: 15px;
     cursor: pointer;   
-    background: rgb(2, 229, 2);
+    background: rgb(229, 2, 2);
+    display: none;
+    color: #fff;
 }
 #menuBtn{
     font-family: MV Boli;
     font-weight: bold;
     font-size: 15px;
     padding: 5px 15px;
-    border: 4px solid;
+    border: 4px solid black;
     border-radius: 15px;
     cursor: pointer;    
     background: rgb(2, 229, 2);
+    color: #fff;
+}
+#pauseBtn{
+    font-family: MV Boli;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 15px;
+    border: 4px solid black;
+    border-radius: 15px;
+    cursor: pointer;    
+    background: rgb(2, 229, 2);
+    color: #fff;
+}
+#continueBtn{
+    font-family: MV Boli;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 15px;
+    border: 4px solid black;
+    border-radius: 15px;
+    cursor: pointer;    
+    background: rgb(2, 229, 2);
+    color: #fff;
+    display: none;
 }
 .startingPart{
     position: relative;

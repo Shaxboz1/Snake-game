@@ -2,6 +2,8 @@ const gameBoard = document.getElementById("gameBoard")
 const ctx = gameBoard.getContext("2d")
 const scoreText = document.getElementById("scoreText")
 const resetBtn = document.getElementById("resetBtn")
+const pauseBtn = document.getElementById("pauseBtn")
+const continueBtn = document.getElementById("continueBtn")
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
 const boardBackground = "white";
@@ -10,6 +12,7 @@ const snakeBorder = "black";
 const foodColor = "red";
 const unitSize = 25;
 let running = false;
+var pauseRun = true;
 let xVelocity = unitSize;
 let yVelocity = 0;
 let foodX;
@@ -23,9 +26,7 @@ let snake = [
     {x:0, y:0}
 ]
 
-
 window.addEventListener("keydown", changeDirection);
-
 document.addEventListener("DOMContentLoaded", function() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
@@ -41,9 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
-
-
 var myVariable = 200;
 var checkbox1 = document.querySelector(".chkbx1");
 var checkbox2 = document.querySelector(".chkbx2");
@@ -66,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 }
 });
-
-
 const startBtn = document.querySelector(".startBtn")
 const gameContainer = document.querySelector("#gameContainer")
 const overlay = document.querySelector(".overlay")
@@ -106,7 +102,6 @@ function menu(){
     startText3.style.display = "none"
     startText4.style.display = "none"
 }
-
 function gameStart(){
     running = true;
     scoreText.textContent = score;
@@ -114,8 +109,19 @@ function gameStart(){
     drawFood();
     nextTick();
 };
+pauseBtn.addEventListener("click", ()=>{
+    pauseRun = false;
+    pauseBtn.style.display = "none"
+    continueBtn.style.display = "block"
+})
+continueBtn.addEventListener("click", ()=>{
+    continueBtn.style.display = "none"
+    pauseBtn.style.display = "block"
+    pauseRun = true;
+    nextTick();
+})
 function nextTick(){
-    if(running){
+    if(running == true && pauseRun == true){
         setTimeout(()=>{
             clearBoard();
             drawFood();
@@ -124,7 +130,10 @@ function nextTick(){
             checkGameOver();
             nextTick();
         }, myVariable);
-    }else{
+    }else if(pauseRun == false){
+        displayPauseGame();
+    }
+    else{
         dsiplayGameOver();
     }
 };
@@ -165,13 +174,7 @@ function drawSnake(){
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
     })
 };
-
-
-
-
 function changeDirection(event){
-    
-    
     const keyPressed = event.keyCode
     const LEFT = 37;
     const kLEFT = 65;
@@ -181,11 +184,6 @@ function changeDirection(event){
     const kRIGHT = 68;
     const DOWN = 40;
     const kDOWN = 83;
-    
-
-
-    
-    
     
     const goingUp = (yVelocity == -unitSize);
     const goingDown = (yVelocity == unitSize);
@@ -233,11 +231,6 @@ function changeDirection(event){
     }
 
 };
-
-
-
-
-
 function checkGameOver(){
     switch(true){
         case(snake[0].x < 0):
@@ -259,12 +252,21 @@ function checkGameOver(){
         }
     }
 };
+function displayPauseGame(){
+    ctx.font = "50px MV Boli";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Game Paused!", gameWidth / 2, gameHeight / 2);
+}
 function dsiplayGameOver(){
     ctx.font = "50px MV Boli";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText("Game Over!", gameWidth / 2, gameHeight / 2);
     running = false;
+    
+    resetBtn.style.display = "block"
+    pauseBtn.style.display = "none"
 };
 resetBtn.addEventListener("click", ()=>{
     score = 0;
@@ -282,8 +284,9 @@ resetBtn.addEventListener("click", ()=>{
     createFood();
     drawFood();
     nextTick();
+    resetBtn.style.display = "none"
+    pauseBtn.style.display = "block"
 });
-
 const settingBtn = document.querySelector(".settingsBtn")
 const checkboxs = document.querySelector(".chekboxs")
 const setting = document.querySelector(".bx-cog")
@@ -292,7 +295,6 @@ function showSettings(){
     startingPart.classList.toggle("active1")
     setting.classList.toggle("active2")
 }
-
 function move(direction){
     const goingUp = (yVelocity == -unitSize);
     const goingDown = (yVelocity == unitSize);
@@ -317,4 +319,3 @@ function move(direction){
         break;
     }
 }
-    
