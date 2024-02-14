@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
         myVariable = 120;
     }
       else if (checkbox3.checked) {
-        myVariable = 70;
+        myVariable = 75;
     }
 }
 });
@@ -113,12 +113,14 @@ pauseBtn.addEventListener("click", ()=>{
     pauseRun = false;
     pauseBtn.style.display = "none"
     continueBtn.style.display = "block"
+    clikSound();
 })
 continueBtn.addEventListener("click", ()=>{
     continueBtn.style.display = "none"
     pauseBtn.style.display = "block"
     pauseRun = true;
     nextTick();
+    clikSound();
 })
 function nextTick(){
     if(running == true && pauseRun == true){
@@ -161,7 +163,7 @@ function moveSnake(){
         score+=1;
         scoreText.textContent = score;
         createFood();
-
+        eatFoodSound();
     }else{
         snake.pop();
     }
@@ -194,38 +196,46 @@ function changeDirection(event){
         case(keyPressed == LEFT  && !goingRight):
           xVelocity = -unitSize;
           yVelocity =  0;
+          clikSound();
           break;
 
         case(keyPressed == kLEFT  && !goingRight):
           xVelocity = -unitSize;
           yVelocity =  0;
+        clikSound();
           break;
         
         case(keyPressed == UP &&  !goingDown):
           xVelocity = 0;
           yVelocity =  -unitSize;
+        clikSound();
           break;
         case(keyPressed == kUP &&  !goingDown):
           xVelocity = 0;
           yVelocity =  -unitSize;
+        clikSound();
           break;
         
         case(keyPressed == RIGHT && !goingLeft):
           xVelocity = unitSize;
           yVelocity =  0;
+        clikSound();
           break;
         case(keyPressed == kRIGHT && !goingLeft):
           xVelocity = unitSize;
           yVelocity =  0;
+        clikSound();
           break;
         
         case(keyPressed == DOWN && !goingUp):
           xVelocity = 0;
           yVelocity = unitSize;
+        clikSound();
           break;
         case(keyPressed == kDOWN && !goingUp):
           xVelocity = 0;
           yVelocity = unitSize;
+        clikSound();
           break;
        
     }
@@ -264,7 +274,6 @@ function dsiplayGameOver(){
     ctx.textAlign = "center";
     ctx.fillText("Game Over!", gameWidth / 2, gameHeight / 2);
     running = false;
-    
     resetBtn.style.display = "block"
     pauseBtn.style.display = "none"
 };
@@ -284,10 +293,18 @@ resetBtn.addEventListener("click", ()=>{
     createFood();
     drawFood();
     nextTick();
+    clikSound();
     resetBtn.style.display = "none"
     pauseBtn.style.display = "block"
 });
 const settingBtn = document.querySelector(".settingsBtn")
+settingBtn.addEventListener("click", ()=>{
+    clikSound();
+})
+const backToMenuBtn = document.getElementById("menuBtn")
+backToMenuBtn.addEventListener("click", ()=>{
+    clikSound();
+})
 const checkboxs = document.querySelector(".chekboxs")
 const setting = document.querySelector(".bx-cog")
 function showSettings(){
@@ -304,18 +321,33 @@ function move(direction){
         case(direction == 1 && !goingDown):
         xVelocity = 0;
         yVelocity =  -unitSize;
+        clikSound();
         break;
         case(direction == 2 && !goingUp):
         xVelocity = 0;
         yVelocity = unitSize;
+        clikSound();
         break;
         case(direction == 3 && !goingRight):
         xVelocity = -unitSize;
         yVelocity =  0;
+        clikSound();
         break;
         case(direction == 4 && !goingLeft):
         xVelocity = unitSize;
         yVelocity =  0;
+        clikSound();
         break;
     }
+}
+
+// === Sound Effects === //
+
+function clikSound(){
+    let audio = new Audio("./click.mp3");
+    audio.play();
+}
+function eatFoodSound(){
+    let audio = new Audio("./eat(2).mp3");
+    audio.play();
 }
